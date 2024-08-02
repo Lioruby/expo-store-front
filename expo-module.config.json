@@ -1,9 +1,15 @@
 {
-  "platforms": ["ios", "tvos", "android", "web"],
+  "platforms": [
+    "ios"
+  ],
   "ios": {
-    "modules": ["ExpoStoreFrontModule"]
+    "modules": [
+      "ExpoStoreFrontModule"
+    ]
   },
   "android": {
-    "modules": ["expo.modules.storefront.ExpoStoreFrontModule"]
+    "modules": [
+      "expo.modules.storefront.ExpoStoreFrontModule"
+    ]
   }
 }
