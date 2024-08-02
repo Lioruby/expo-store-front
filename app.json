@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "expo-store-front",
+    "slug": "expo-store-front",
+    "version": "0.1.0",
+    "description": "A RN wrapper for apple store front",
+    "sdkVersion": "51.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "android": {
+      "package": "com.lioruby.expostorefront"
+    }
+  }
+}
