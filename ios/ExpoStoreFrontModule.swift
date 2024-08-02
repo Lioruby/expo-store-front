@@ -1,4 +1,5 @@
 import ExpoModulesCore
+import StoreKit
 
 public class ExpoStoreFrontModule: Module {
   // Each module class must implement the definition function. The definition consists of components
@@ -10,34 +11,12 @@ public class ExpoStoreFrontModule: Module {
     // The module will be accessible from `requireNativeModule('ExpoStoreFront')` in JavaScript.
     Name("ExpoStoreFront")
 
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants([
-      "PI": Double.pi
-    ])
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      return "Hello world! 👋"
-    }
-
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { (value: String) in
-      // Send an event to JavaScript.
-      self.sendEvent("onChange", [
-        "value": value
-      ])
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of the
-    // view definition: Prop, Events.
-    View(ExpoStoreFrontView.self) {
-      // Defines a setter for the `name` prop.
-      Prop("name") { (view: ExpoStoreFrontView, prop: String) in
-        print(prop)
+    AsyncFunction("getAppStoreProvenanceCountryCode") { () in
+      if #available(iOS 13.0, *) {
+        let countryCode = SKPaymentQueue.default().storefront?.countryCode ?? "US"
+        return countryCode
+      } else {
+        return "UNSUPPORTED_VERSION"
       }
     }
   }
